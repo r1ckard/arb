@@ -7,12 +7,12 @@ import java.io.InputStreamReader;
 
 public class FileReader {
 
-	public String readFile() {
+	public String readFile(String fileLocation) {
 		String fileContent = "";
 		try {
 			// Open the file that is the first
 			// command line parameter
-			FileInputStream fstream = new FileInputStream("BetFair.txt");
+			FileInputStream fstream = new FileInputStream(fileLocation);
 			// Get the object of DataInputStream
 			DataInputStream in = new DataInputStream(fstream);
 			BufferedReader br = new BufferedReader(new InputStreamReader(in));

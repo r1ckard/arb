@@ -13,9 +13,8 @@ public class ArbitrageFinder {
 
 	}
 
-	public String getLocation(String string) {
-		// TODO Auto-generated method stub
-		return new FileReader().readFile();
+	public String getLocation(String fileLocation) {
+		return new FileReader().readFile(fileLocation);
 	}
 
 }
