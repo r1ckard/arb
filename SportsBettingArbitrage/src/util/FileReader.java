@@ -35,20 +35,20 @@ public class FileReader {
 		return fileContent;
 	}
 
-	public List<String> getBettingCompanies(String bettingCompanyFileLocation) {
-		List<String> companies = new ArrayList<String>();
+	public List<String> getRowsFromFile(String fileLocation) {
+		List<String> results = new ArrayList<String>();
 		try {
 			// Open the file that is the first
 			// command line parameter
 			FileInputStream fstream = new FileInputStream(
-					bettingCompanyFileLocation);
+					fileLocation);
 			// Get the object of DataInputStream
 			DataInputStream in = new DataInputStream(fstream);
 			BufferedReader br = new BufferedReader(new InputStreamReader(in));
 			String strLine;
 			// Read File Line By Line
 			while ((strLine = br.readLine()) != null) {
-				companies.add(strLine);
+				results.add(strLine);
 			}
 
 			// Close the input stream
@@ -59,6 +59,6 @@ public class FileReader {
 		} finally {
 			// in.close();
 		}
-		return companies;
+		return results;
 	}
 }
