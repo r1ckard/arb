@@ -22,8 +22,6 @@ public class FileReader {
 			// Read File Line By Line
 			while ((strLine = br.readLine()) != null) {
 				fileContent += strLine;
-				// Print the content on the console
-				System.out.println(strLine);
 			}
 
 			// Close the input stream
@@ -51,8 +49,6 @@ public class FileReader {
 			// Read File Line By Line
 			while ((strLine = br.readLine()) != null) {
 				companies.add(strLine);
-				// Print the content on the console
-				System.out.println(strLine);
 			}
 
 			// Close the input stream

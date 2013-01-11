@@ -9,25 +9,38 @@ import org.junit.Test;
 public class ArbitrageFinderTest {
 
 	ArbitrageFinder tested;
+	String betFairLocation = "http://www.betfair.com/partner/marketData_loader.asp?fa=ss&id=1&SportName=Soccer&Type=B";
+	List<String> bettingCompany = new ArrayList<String>();
+	String resourcePath = "resources/bettingCompanies/";
 
 	@Test
 	public void getBettingCompanyXmlLocation() {
 		tested = new ArbitrageFinder();
-		String betFairLocation = "http://www.betfair.com/partner/marketData_loader.asp?fa=ss&id=1&SportName=Soccer&Type=B";
-		String fetchedLocation = tested
-				.getLocation("resources/bettingCompanies/BetFair.txt");
+		String fetchedLocation = tested.getLocation(resourcePath
+				+ "BetFair.txt");
 		assertThat(fetchedLocation, is(betFairLocation));
 	}
 
 	@Test
 	public void getBettingCompaniesToFetchLocationsFor() {
 		tested = new ArbitrageFinder();
-		List<String> bettingCompany = new ArrayList<String>();
 		bettingCompany.add("BetFair");
 
 		List<String> fetchedCompanies = tested
-				.getBettingCompaniesToFindArbitragesFrom("resources/bettingCompanies/BettingCompanies.txt");
+				.getBettingCompaniesToFindArbitragesFrom(resourcePath
+						+ "BettingCompanies.txt");
 		assertThat(fetchedCompanies.get(0), is(bettingCompany.get(0)));
 	}
 
+	@Test
+	public void getXmlFlowFromBettingCompanyFile() {
+		tested = new ArbitrageFinder();
+		List<String> fetchedCompanies = tested
+				.getBettingCompaniesToFindArbitragesFrom("resources/bettingCompanies/BettingCompanies.txt");
+		for (String companyName : fetchedCompanies) {
+			assertThat(tested.getLocation(resourcePath + companyName + ".txt"),
+					is(betFairLocation));
+		}
+
+	}
 }
